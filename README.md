@@ -1,6 +1,6 @@
 # string-time
 
-Convert time string into seconds, minutes, hour, array or object.
+Convert time string into seconds, minutes, hour, array or object and vice versa.
 
 <a href="https://www.npmjs.com/package/@coderosh/string-time"><img alt="NPM" src="https://img.shields.io/npm/v/@coderosh/string-time" /></a>
 <a href="https://github.com/coderosh/string-time"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
@@ -25,27 +25,37 @@ yarn add @coderosh/string-time
 ## Usage
 
 ```js
-const { stringTime } = require('@coderosh/string-time')
-
-const time = stringTime('1:59:60')
-
-console.log(time.object) // { hour: 1, minute: 59, second: 60 }
-console.log(time.array) // [ 1, 59, 60 ]
-console.log(time.string) // "01:59:60"
-console.log(time.totalHours) // 2
-console.log(time.totalMinutes) // 120
-console.log(time.totalSeconds) // 7200
+const stringTime = require('@coderosh/string-time')
+// OR
+import stringTime from '@coderosh/string-time'
 ```
 
-`stringTime` accepts only one argument and returns a object with 5 getters `object`, `array`,`string`, `totalHours`, `totalMinutes` and `totalSeconds`.
-
-If string passed to the function has empty string then the default value will be 0.
+### stringTime
 
 ```js
+const time = stringTime('1:59:60')
+
+time.array // [ 1, 59, 60 ]
+time.string // "01:59:60"
+time.object // { hour: 1, minute: 59, second: 60 }
+time.totalHours // 2
+time.totalMinutes // 120
+time.totalSeconds // 7200
+
 stringTime('').string // "00:00:00"
 stringTime(':1:').string // "00:01:00"
 stringTime('1').string // "01:00:00"
 stringTime('::1').string // "00:00:01"
+```
+
+### stringTime.reverse
+
+```js
+stringTime.reverse({ seconds: 7200 }) // 02:00:00
+stringTime.reverse({ hours: 2 }) // 02:00:00
+stringTime.reverse({ minutes: 120 }) // 02:00:00
+stringTime.reverse({ hour: 2, minute: 0, second: 0 }) // 02:00:00
+stringTime.reverse([2, 0, 0]) // 02:00:00
 ```
 
 ## LICENSE

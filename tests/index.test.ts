@@ -1,4 +1,4 @@
-import { stringTime } from '../src'
+import stringTime from '../src'
 
 describe('stringTime function', () => {
   it('should return expected seconds, hour, minutes, string, object and array', () => {
@@ -38,5 +38,23 @@ describe('stringTime function', () => {
     expect(stringTime('1::1').array).toEqual([1, 0, 1])
     expect(stringTime('::1').array).toEqual([0, 0, 1])
     expect(stringTime(':1:').array).toEqual([0, 1, 0])
+  })
+})
+
+describe('stringTime.reverse function', () => {
+  it('should return string on array', () => {
+    expect(stringTime.reverse([0, 1, 11])).toBe('00:01:11')
+  })
+
+  it('should return string on object', () => {
+    expect(stringTime.reverse({ hour: 2, minute: 0, second: 1 })).toBe(
+      '02:00:01'
+    )
+  })
+
+  it('should return string on seconds, hour and minutes', () => {
+    expect(stringTime.reverse({ seconds: 7200 })).toBe('02:00:00')
+    expect(stringTime.reverse({ hours: 2 })).toBe('02:00:00')
+    expect(stringTime.reverse({ minutes: 120 })).toBe('02:00:00')
   })
 })

@@ -1,7 +1,7 @@
 {
   "name": "@coderosh/string-time",
-  "version": "1.0.1",
-  "description": "Convert time string into seconds, minutes, hour, array or object",
+  "version": "1.1.0",
+  "description": "Convert time string into seconds, minutes, hour, array or object and vice versa",
   "main": "dist/index.js",
   "scripts": {
     "watch": "tsc -w",
