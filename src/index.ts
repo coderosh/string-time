@@ -2,13 +2,13 @@ export function stringTime(str: string) {
   const arr = parseAndVerify(str)
 
   const result = {
-    get totalSecond() {
+    get totalSeconds() {
       return arr[0] * 3600 + arr[1] * 60 + arr[2]
     },
-    get totalMinute() {
+    get totalMinutes() {
       return arr[0] * 60 + arr[1] + arr[2] / 60
     },
-    get totalHour() {
+    get totalHours() {
       return arr[0] + arr[1] / 60 + arr[2] / 3600
     },
     get string() {
@@ -33,7 +33,7 @@ function parseAndVerify(str: string) {
   const arr = str.split(':').map((a) => (a ? +a : 0))
 
   if (arr.length > 3) {
-    throw new Error(`Give time ${str} is invalid.`)
+    throw new Error(`Given time ${str} is invalid`)
   } else if (arr.length === 2) {
     arr.push(0)
   } else if (arr.length === 1) {
@@ -42,11 +42,11 @@ function parseAndVerify(str: string) {
     arr.push(0, 0, 0)
   }
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 1; i <= 2; i++) {
     if (arr[i] > 60) {
-      const k = i === 0 ? 'Hour' : i === 1 ? 'Minute' : 'Seconds'
+      const k = i === 1 ? 'Minute' : 'Second'
       throw new Error(
-        `Give time ${str} is invalid. ${k} can't be greater than 60`
+        `Given time ${str} is invalid. ${k} can't be greater than 60`
       )
     }
   }

@@ -3,9 +3,9 @@ import { stringTime } from '../src'
 describe('stringTime function', () => {
   it('should return expected seconds, hour, minutes, string, object and array', () => {
     expect(stringTime('1:59:60')).toEqual({
-      totalHour: 2,
-      totalMinute: 120,
-      totalSecond: 7200,
+      totalHours: 2,
+      totalMinutes: 120,
+      totalSeconds: 7200,
       string: '01:59:60',
       object: {
         hour: 1,
@@ -17,11 +17,18 @@ describe('stringTime function', () => {
   })
 
   it('should throw error if more than 3 units of time is passed', () => {
-    expect(() => stringTime('1:2:2:2')).toThrowError()
+    expect(() => stringTime('1:2:2:2')).toThrowError(
+      `Given time 1:2:2:2 is invalid`
+    )
   })
 
   it('should throw an error if invalid time is passed', () => {
-    expect(() => stringTime('1:23:100')).toThrowError()
+    expect(() => stringTime('1:23:100')).toThrowError(
+      `Given time 1:23:100 is invalid. Second can't be greater than 60`
+    )
+    expect(() => stringTime('1:100:10')).toThrowError(
+      `Given time 1:100:10 is invalid. Minute can't be greater than 60`
+    )
   })
 
   it('should default the value to 0 if not passed', () => {
