@@ -13,19 +13,19 @@ Convert time string into seconds, minutes, hour, array or object.
 Install via npm
 
 ```sh
-npm install string-time
+npm install @coderosh/string-time
 ```
 
 Or via yarn
 
 ```sh
-yarn add string-time
+yarn add @coderosh/string-time
 ```
 
 ## Usage
 
 ```js
-const { stringTime } = require('string-time')
+const { stringTime } = require('@coderosh/string-time')
 
 const time = stringTime('1:59:60')
 
