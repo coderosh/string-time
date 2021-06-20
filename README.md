@@ -2,7 +2,7 @@
 
 Convert time string into seconds, minutes, hour, array or object.
 
-<a href="https://www.npmjs.com/package/string-time"><img alt="NPM" src="https://img.shields.io/npm/v/string-time" /></a>
+<a href="https://www.npmjs.com/package/@coderosh/string-time"><img alt="NPM" src="https://img.shields.io/npm/v/@coderosh/string-time" /></a>
 <a href="https://github.com/coderosh/string-time"><img alt="MIT" src="https://img.shields.io/badge/license-MIT-blue.svg" /></a>
 <a href="#"><img alt="CI" src="https://img.shields.io/github/workflow/status/coderosh/string-time/CI"></a>
 <a href="https://github.com/coderosh/string-time"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs welcome!" /></a>
