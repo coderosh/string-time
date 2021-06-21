@@ -26,8 +26,7 @@ yarn add @coderosh/string-time
 
 ```js
 const stringTime = require('@coderosh/string-time')
-// OR
-import stringTime from '@coderosh/string-time'
+// OR import stringTime from '@coderosh/string-time'
 ```
 
 ### stringTime
