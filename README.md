@@ -34,29 +34,25 @@ const stringTime = require('@coderosh/string-time')
 ```js
 const time = stringTime('1:59:60')
 
-time.array // [ 1, 59, 60 ]
-time.string // "01:59:60"
-time.object // { hour: 1, minute: 59, second: 60 }
+time.array // [ 2, 0, 0 ]
+time.string // 02:00:00
+time.object // { hour: 2, minute: 0, second: 0 }
 time.totalHours // 2
 time.totalMinutes // 120
 time.totalSeconds // 7200
 
-stringTime('').string // "00:00:00"
-stringTime(':1:').string // "00:01:00"
-stringTime('1').string // "01:00:00"
-stringTime('::1').string // "00:00:01"
+stringTime('').string // 00:00:00
+stringTime(':1:').string // 00:01:00
+stringTime('1').string // 01:00:00
+stringTime('::1').string // 00:00:01
 ```
 
 ### stringTime.reverse
 
 ```js
-stringTime.reverse({ seconds: 7200 }) // 02:00:00
-stringTime.reverse({ hours: 2 }) // 02:00:00
-stringTime.reverse({ minutes: 120 }) // 02:00:00
-stringTime.reverse({ hour: 2, minute: 0, second: 0 }) // 02:00:00
-stringTime.reverse([2, 0, 0]) // 02:00:00
+stringTime.reverse({ second: 7200 }) // 02:00:00
+stringTime.reverse({ hour: 2 }) // 02:00:00
+stringTime.reverse({ minute: 120 }) // 02:00:00
+stringTime.reverse({ hour: 2, minute: 1, second: 0 }) // 02:01:00
+stringTime.reverse([2, 0, 1]) // 02:00:01
 ```
-
-## LICENSE
-
-MIT
