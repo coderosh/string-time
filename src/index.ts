@@ -1,28 +1,31 @@
 function stringTime(str: string) {
   const arr = parseAndVerify(str)
 
+  const seconds = arr[0] * 3600 + arr[1] * 60 + arr[2]
+
   const result = {
     get totalSeconds() {
-      return arr[0] * 3600 + arr[1] * 60 + arr[2]
+      return seconds
     },
     get totalMinutes() {
-      return arr[0] * 60 + arr[1] + arr[2] / 60
+      return seconds / 60
     },
     get totalHours() {
-      return arr[0] + arr[1] / 60 + arr[2] / 3600
+      return seconds / 3600
     },
     get string() {
-      return arrToStr(arr)
+      return arrToStr(secondsToArray(seconds))
     },
     get object() {
+      const a = secondsToArray(seconds)
       return {
-        hour: arr[0],
-        minute: arr[1],
-        second: arr[2],
+        hour: a[0],
+        minute: a[1],
+        second: a[2],
       }
     },
     get array() {
-      return arr
+      return secondsToArray(seconds)
     },
   }
 
@@ -50,48 +53,33 @@ function parseAndVerify(str: string) {
     // noop
   }
 
-  for (let i = 1; i <= 2; i++) {
-    if (arr[i] > 60) {
-      const k = i === 1 ? 'Minute' : 'Second'
-      throw new Error(
-        `Given time ${str} is invalid. ${k} can't be greater than 60`
-      )
-    }
-  }
-
   return arr
 }
 
-type Time =
-  | number[]
-  | { hour: number; minute: number; second: number }
-  | { seconds: number }
-  | { minutes: number }
-  | { hours: number }
-
-function secondsToString(seconds: number) {
+function secondsToArray(seconds: number) {
   const h = Math.floor(seconds / 3600)
   const m = Math.floor((seconds % 3600) / 60)
   const s = Math.floor((seconds % 3600) % 60)
-  return `${addZero(h)}:${addZero(m)}:${addZero(s)}`
+  return [h, m, s]
 }
 
-function reverse(time: Time) {
+function reverse(
+  time?:
+    | [number?, number?, number?]
+    | { hour?: number; minute?: number; second?: number }
+) {
+  let seconds: number = 0
   if (Array.isArray(time)) {
-    return arrToStr(time)
-  } else if ('seconds' in time) {
-    return secondsToString(time.seconds)
-  } else if ('minutes' in time) {
-    return secondsToString(time.minutes * 60)
-  } else if ('hours' in time) {
-    return secondsToString(time.hours * 3600)
+    seconds = (time[0] || 0) * 3600 + (time[1] || 0) * 60 + (time[2] || 0)
+  } else if (typeof time === 'object') {
+    seconds =
+      (time.hour || 0) * 3600 + (time.minute || 0) * 60 + (time.second || 0)
   } else {
-    return `${addZero(time.hour)}:${addZero(time.minute)}:${addZero(
-      time.second
-    )}`
+    // noop
   }
+
+  return arrToStr(secondsToArray(seconds))
 }
 
 stringTime.reverse = reverse
-
 export = stringTime
