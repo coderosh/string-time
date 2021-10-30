@@ -1,4 +1,4 @@
-import stringTime from '../src'
+import stringTime, { reverse } from '../src'
 
 describe('stringTime function', () => {
   it('should return expected seconds, hour, minutes, string, object and array', () => {
@@ -36,26 +36,24 @@ describe('stringTime function', () => {
   })
 })
 
-describe('stringTime.reverse function', () => {
+describe('reverse function', () => {
   it('should return string on array', () => {
-    expect(stringTime.reverse([0, 1, 11])).toBe('00:01:11')
-    expect(stringTime.reverse([0, undefined, 20])).toBe('00:00:20')
-    expect(stringTime.reverse([0, 10])).toBe('00:10:00')
+    expect(reverse([0, 1, 11])).toBe('00:01:11')
+    expect(reverse([0, undefined, 20])).toBe('00:00:20')
+    expect(reverse([0, 10])).toBe('00:10:00')
   })
 
   it('should return string on object', () => {
-    expect(stringTime.reverse({ hour: 2, minute: 0, second: 1 })).toBe(
-      '02:00:01'
-    )
+    expect(reverse({ hour: 2, minute: 0, second: 1 })).toBe('02:00:01')
   })
 
   it('should return string on second or hour or minute only', () => {
-    expect(stringTime.reverse({ second: 7200 })).toBe('02:00:00')
-    expect(stringTime.reverse({ hour: 2 })).toBe('02:00:00')
-    expect(stringTime.reverse({ minute: 120 })).toBe('02:00:00')
+    expect(reverse({ second: 7200 })).toBe('02:00:00')
+    expect(reverse({ hour: 2 })).toBe('02:00:00')
+    expect(reverse({ minute: 120 })).toBe('02:00:00')
   })
 
   it('should return 0 if time is not passed', () => {
-    expect(stringTime.reverse()).toBe('00:00:00')
+    expect(reverse()).toBe('00:00:00')
   })
 })

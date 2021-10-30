@@ -81,5 +81,4 @@ function reverse(
   return arrToStr(secondsToArray(seconds))
 }
 
-stringTime.reverse = reverse
-export = stringTime
+export { stringTime as default, reverse }
