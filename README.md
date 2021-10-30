@@ -25,8 +25,7 @@ yarn add @coderosh/string-time
 ## Usage
 
 ```js
-const stringTime = require('@coderosh/string-time')
-// OR import stringTime from '@coderosh/string-time'
+import stringTime, { reverse } from '@coderosh/string-time'
 ```
 
 ### stringTime
@@ -47,12 +46,12 @@ stringTime('1').string // 01:00:00
 stringTime('::1').string // 00:00:01
 ```
 
-### stringTime.reverse
+### reverse
 
 ```js
-stringTime.reverse({ second: 7200 }) // 02:00:00
-stringTime.reverse({ hour: 2 }) // 02:00:00
-stringTime.reverse({ minute: 120 }) // 02:00:00
-stringTime.reverse({ hour: 2, minute: 1, second: 0 }) // 02:01:00
-stringTime.reverse([2, 0, 1]) // 02:00:01
+reverse({ second: 7200 }) // 02:00:00
+reverse({ hour: 2 }) // 02:00:00
+reverse({ minute: 120 }) // 02:00:00
+reverse({ hour: 2, minute: 1, second: 0 }) // 02:01:00
+reverse([2, 0, 1]) // 02:00:01
 ```
